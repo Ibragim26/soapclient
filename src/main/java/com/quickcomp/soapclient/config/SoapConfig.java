@@ -7,14 +7,6 @@ import org.springframework.ws.client.core.WebServiceTemplate;
 
 @Configuration
 public class SoapConfig {
-
-//    @Bean
-//    public Jaxb2Marshaller marshaller(){
-//        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-//        marshaller.setPackagesToScan("com.quickcomp.soapclient.wsdll");
-//        return marshaller;
-//    }
-
     @Bean
     public WebServiceTemplate template(){
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();

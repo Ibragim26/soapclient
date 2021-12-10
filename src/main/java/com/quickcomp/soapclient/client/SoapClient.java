@@ -11,9 +11,6 @@ import org.springframework.ws.client.core.WebServiceTemplate;
 @Service
 public class SoapClient {
 
-//    @Autowired
-//    private Jaxb2Marshaller marshaller;
-
     @Autowired
     private WebServiceTemplate template;
 
