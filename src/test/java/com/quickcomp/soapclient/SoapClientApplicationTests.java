@@ -4,7 +4,7 @@ package com.quickcomp.soapclient;
 import com.quickcomp.soapclient.client.SoapClient;
 import com.quickcomp.soapclient.wsdll.GetOrderRequest;
 import com.quickcomp.soapclient.wsdll.GetProductRequest;
-import org.junit.Test;
+//import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.*;

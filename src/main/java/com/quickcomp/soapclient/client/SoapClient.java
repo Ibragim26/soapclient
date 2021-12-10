@@ -2,6 +2,7 @@ package com.quickcomp.soapclient.client;
 
 import com.quickcomp.soapclient.wsdll.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
@@ -10,23 +11,20 @@ import org.springframework.ws.client.core.WebServiceTemplate;
 @Service
 public class SoapClient {
 
-    @Autowired
-    private Jaxb2Marshaller marshaller;
+//    @Autowired
+//    private Jaxb2Marshaller marshaller;
 
+    @Autowired
     private WebServiceTemplate template;
 
-    public GetProductResponse getProduct (GetProductRequest request) {
-        template = new WebServiceTemplate(marshaller);
+    @Value("${soap-request}")
+    private String soapUrl;
 
-        GetProductResponse soap = (GetProductResponse) template.marshalSendAndReceive("http://localhost:8081/soapWS/defaultWsdl11Definition.wsdl",
-                request );
-        return soap;
+    public GetProductResponse getProduct (GetProductRequest request) {
+        return (GetProductResponse) template.marshalSendAndReceive(soapUrl, request );
     }
 
     public GetOrderResponse getOrder (GetOrderRequest request) {
-        template = new WebServiceTemplate(marshaller);
-        GetOrderResponse soap = (GetOrderResponse) template.marshalSendAndReceive("http://localhost:8081/soapWS/defaultWsdl11Definition.wsdl",
-                request );
-        return soap;
+        return (GetOrderResponse) template.marshalSendAndReceive(soapUrl, request );
     }
 }
