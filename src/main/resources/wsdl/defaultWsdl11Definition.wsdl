@@ -1,0 +1,97 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://quickcomp.com/quickcomp/soap/entities/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://quickcomp.com/quickcomp/soap/entities/" targetNamespace="http://quickcomp.com/quickcomp/soap/entities/">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://quickcomp.com/quickcomp/soap/entities/">
+            <xs:element name="getProductRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="orderId" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getProductResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="product" type="tns:ProductSoap"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:complexType name="ProductSoap">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long"/>
+                    <xs:element name="name" type="xs:string"/>
+                    <xs:element name="description" type="xs:string"/>
+                    <xs:element name="price" type="xs:double"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="getOrderRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getOrderResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="booking" type="tns:OrderSoap"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:complexType name="OrderSoap">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long"/>
+                    <xs:element name="address" type="xs:string"/>
+                    <xs:element name="date" type="xs:date"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getProductRequest">
+        <wsdl:part element="tns:getProductRequest" name="getProductRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getOrderRequest">
+        <wsdl:part element="tns:getOrderRequest" name="getOrderRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getOrderResponse">
+        <wsdl:part element="tns:getOrderResponse" name="getOrderResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getProductResponse">
+        <wsdl:part element="tns:getProductResponse" name="getProductResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="SoapServicePort">
+        <wsdl:operation name="getProduct">
+            <wsdl:input message="tns:getProductRequest" name="getProductRequest"> </wsdl:input>
+            <wsdl:output message="tns:getProductResponse" name="getProductResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getOrder">
+            <wsdl:input message="tns:getOrderRequest" name="getOrderRequest"> </wsdl:input>
+            <wsdl:output message="tns:getOrderResponse" name="getOrderResponse"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SoapServicePortSoap11" type="tns:SoapServicePort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getProduct">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getProductRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getProductResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getOrder">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getOrderRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getOrderResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="SoapServicePortService">
+        <wsdl:port binding="tns:SoapServicePortSoap11" name="SoapServicePortSoap11">
+<!--            <soap:address/>-->
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
